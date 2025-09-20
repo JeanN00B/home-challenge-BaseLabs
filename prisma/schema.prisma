@@ -14,3 +14,28 @@ datasource db {
   url      = "file:./db.sqlite3"
 }
 
+// User can be admin or client and will let interact with the app
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String  @default("client")
+}
+
+// Products that includes the ammount and time limiters (business logic)
+model Product {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  price     Int
+  stock     Int @default(0)
+  ammountLimit Int @default(0)
+  timeRangeLimit Int @default(0)
+}
+
+model Invoice {
+  id        String   @id @default(uuid())
+  clientId  String
+  products  Json // [{productId: String, ammount: Int}]
+}

@@ -10,21 +10,26 @@ Here I show the result after a thinking process, where I tried to split the app 
 
     ```Typescript
     const {ammountLimit, timeRangeLimit} = searchItem(itemId);
-    const hasInvoices = searchInvoices(userId, timeRangeLimit);
 
-    if (!hasInvoices): {
-      const execute =  ItemBuy();
-      return execute.status
+    const hasInvoices = []
+    const isTooManyItems = false
+
+    if (timeRangeLimit > 0):
+      const hasInvoices = searchInvoices(userId, timeRangeLimit);
+      const itemAmmount = 0
+      for invoice in hasInvoices:
+        itemAmmount += length(invoice.filter(productId: itemId))
+        if itemAmmount > ammountLimit;
+          isTooManyItems = true
+
+    if (hasInvoices AND isTooManyItems): {
+      return {error: 429, message: "too many requests!"}
     }
-    if (hasInvoices AND !itemId): {
+    if ((request.ammount <= ammountLimit) && (ammountLimit > 0)):{
       const execute = ItemBuy();
       return execute.status
     }
-    if (request.ammount <= ammountLimit):{
-      const execute = ItemBuy();
-      return execute.status
-    }
-    else: return error 429
+    else: return {error: 429, message: "too many requests!"}
     ```
 
   - if (AdminRole):
@@ -57,9 +62,9 @@ Here I show the result after a thinking process, where I tried to split the app 
 - [ ] DB schemas:
 
   - [x] Prisma ORM + sqlite
-  - [ ] Users (names, email, password, ID, role (client | admin)); => Register/Check Admin on (build | dev) process with script
-  - [ ] Products (name, stock, ID, Price, ammountLimit, timeRangeLimit);
-  - [ ] Invoices (ID, clientId, productsArray[productId, ammount])
+  - [x] Users (names, email, password, ID, role (client | admin)); => Register/Check Admin on (build | dev) process with script
+  - [x] Products (name, stock, ID, Price, ammountLimit, timeRangeLimit);
+  - [x] Invoices (ID, clientId, productsArray[productId, ammount])
 
 - [ ] Backend that receives a POST to buy corn
 
