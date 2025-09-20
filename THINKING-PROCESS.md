@@ -52,11 +52,11 @@ Here I show the result after a thinking process, where I tried to split the app 
 
 ## Tasks:
 
-- [ ] NextJS repo, Front + backend possibility (simple monorepo for the task)
+- [x] NextJS repo, Front + backend possibility (simple monorepo for the task)
 
 - [ ] DB schemas:
 
-  - [ ] Prisma ORM + sqlite
+  - [x] Prisma ORM + sqlite
   - [ ] Users (names, email, password, ID, role (client | admin)); => Register/Check Admin on (build | dev) process with script
   - [ ] Products (name, stock, ID, Price, ammountLimit, timeRangeLimit);
   - [ ] Invoices (ID, clientId, productsArray[productId, ammount])
@@ -67,6 +67,6 @@ Here I show the result after a thinking process, where I tried to split the app 
   - [ ] RateLimit: Decorator (using userId, and productId) --> If no invoice on the last min, pass, if invoice and no productId, pass... ELSE, error 429.
 
 - [ ] Auth-based:
-  - [ ] Login
+  - [ ] Login => We need a JWT or similar to auth the user & transactions!
   - [ ] Logout
   - [ ] Register?
