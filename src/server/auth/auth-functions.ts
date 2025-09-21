@@ -39,17 +39,16 @@ export async function login(request: LoginRequest) {
     where: { email: email, password: password },
   });
 
-  if (!userResponse) {
-    return { error: "user or password incorrect" };
+  if (userResponse == null) {
+    throw new Error("user or password incorrect");
   }
-
   // TODO: add a session token to the client --> token must be cyphered and decyphered with user password
-  return userResponse;
+  return { response: userResponse, status: 200 };
 }
 
 // Logout FUNCTION
 export async function logout(request: LogoutRequest) {
   const { token } = request;
   // TODO: remove the token from the client
-  return { message: "Logout successful" };
+  return { message: "Logout successful", status: 200 };
 }
