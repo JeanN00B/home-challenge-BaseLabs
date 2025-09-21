@@ -28,8 +28,11 @@ export async function register(request: RegisterRequest) {
       role: "client",
     },
   });
+  if (!userResponse) {
+    throw new Error("User not created, email already in use");
+  }
 
-  return userResponse;
+  return { response: userResponse, status: 200 };
 }
 
 // Login FUNCTION

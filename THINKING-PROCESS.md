@@ -69,10 +69,10 @@ Here I show the result after a thinking process, where I tried to split the app 
 
 - [ ] Backend that receives a POST to buy corn
 
-  - [ ] body: {userId, itemId, ammount}
+  - [x] body: {userId, itemId, ammount}
   - [ ] RateLimit: Decorator (using userId, and productId) --> If no invoice on the last min, pass, if invoice and no productId, pass... ELSE, error 429.
 
-- [ ] Auth-based:
-  - [ ] Login => We need a JWT or similar to auth the user & transactions!
-  - [ ] Logout
-  - [ ] Register?
+- [x] Auth-based: (With many mockuped functionalities)
+  - [x] Login => We need a JWT or similar to auth the user & transactions! (Using client ID by now)
+  - [x] Logout => remove token from localStorage
+  - [x] Register? => Set localstorage ID
