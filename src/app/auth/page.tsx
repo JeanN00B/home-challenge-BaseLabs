@@ -15,6 +15,7 @@ export default function AuthPage() {
     });
     const data = await res.json();
     localStorage.setItem("token", data.id);
+    localStorage.setItem("role", data.role);
     router.push("/");
   };
 

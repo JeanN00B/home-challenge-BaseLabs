@@ -30,6 +30,10 @@ export interface BuyProductRequest {
   clientId: string;
 }
 
+export interface DeleteProductRequest {
+  id: string;
+}
+
 // RegisterProduct FUNCTION
 export async function registerProduct(request: RegisterProductRequest) {
   const { name, description, price, stock, ammountLimit, timeRangeLimit } =
@@ -84,6 +88,23 @@ export async function buyProduct(request: BuyProductRequest) {
     },
   });
   return { response: invoice, status: 200 };
+}
+
+export async function deleteProduct(request: DeleteProductRequest) {
+  const { id } = request;
+  const product = await prisma.product.delete({
+    where: { id },
+  });
+  if (!product) {
+    throw new Error("Product not found");
+  }
+  return { response: product, status: 200 };
+}
+
+// GetProducts FUNCTION
+export async function getProducts() {
+  const products = await prisma.product.findMany();
+  return { response: products, status: 200 };
 }
 
 //TODO: add a decorator that applies a limit to the BUY endpoint (this is not working right now)
