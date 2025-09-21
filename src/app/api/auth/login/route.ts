@@ -1,3 +1,5 @@
+"use server";
+
 import { login } from "@/server/auth/auth-functions";
 
 export async function POST(request: Request) {
