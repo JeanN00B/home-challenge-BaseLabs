@@ -2,18 +2,18 @@ import prisma from "@/server/db";
 // TODO: save and read hashed password in the database
 
 // Interfaces
-interface RegisterRequest {
+export interface RegisterRequest {
   email: string;
   name?: string;
   password: string;
 }
 
-interface LoginRequest {
+export interface LoginRequest {
   email: string;
   password: string;
 }
 
-interface LogoutRequest {
+export interface LogoutRequest {
   token: string;
 }
 
