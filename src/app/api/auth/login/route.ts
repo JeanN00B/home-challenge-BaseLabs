@@ -10,7 +10,6 @@ export async function POST(request: Request) {
       status: 401,
     });
   } else {
-    localStorage.setItem("token", response.id);
     return new Response(JSON.stringify(response), {
       status,
     });

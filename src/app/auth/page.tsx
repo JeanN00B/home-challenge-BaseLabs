@@ -1,19 +1,33 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 export default function AuthPage() {
+  const router = useRouter();
   const handleLogin = async (formData: FormData) => {
     const email = formData.get("email");
     const password = formData.get("password");
-    const result = fetch("/api/auth/login", {
+
+    const res = await fetch("/api/auth/login", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
-    console.log(result);
+    const data = await res.json();
+    localStorage.setItem("token", data.id);
+    router.push("/");
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <form action={handleLogin} className="flex flex-col gap-4">
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.currentTarget);
+          await handleLogin(formData);
+        }}
+        className="flex flex-col gap-4"
+      >
         <input
           type="email"
           name="email"
