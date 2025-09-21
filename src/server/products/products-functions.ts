@@ -69,6 +69,14 @@ export async function buyProduct(request: BuyProductRequest) {
     throw new Error("Not enough stock");
   }
 
+  const stockUpdated = await prisma.product.update({
+    where: { id: productId },
+    data: { stock: { decrement: ammount } },
+  });
+  if (!stockUpdated) {
+    throw new Error("Stock not updated");
+  }
+
   const invoice = await prisma.invoice.create({
     data: {
       products: { create: { productId, ammount } },
