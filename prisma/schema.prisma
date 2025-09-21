@@ -30,12 +30,12 @@ model Product {
   description String?
   price     Int
   stock     Int @default(0)
-  ammountLimit Int @default(0)
-  timeRangeLimit Int @default(0)
+  ammountLimit Int @default(0) @map("ammount_limit")
+  timeRangeLimit Int @default(0) @map("time_range_limit")
 }
 
 model Invoice {
   id        String   @id @default(uuid())
-  clientId  String
-  products  Json // [{productId: String, ammount: Int}]
+  clientId  String   @map("client_id")
+  products  Json      // [{productId: String, ammount: Int}]
 }

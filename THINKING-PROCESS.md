@@ -65,6 +65,7 @@ Here I show the result after a thinking process, where I tried to split the app 
   - [x] Users (names, email, password, ID, role (client | admin)); => Register/Check Admin on (build | dev) process with script
   - [x] Products (name, stock, ID, Price, ammountLimit, timeRangeLimit);
   - [x] Invoices (ID, clientId, productsArray[productId, ammount])
+  - [ ] Seed script to init admin! + user!
 
 - [ ] Backend that receives a POST to buy corn
 
