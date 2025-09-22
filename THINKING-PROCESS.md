@@ -85,7 +85,7 @@ From sessions, request, etc endpoints exposure to consume on front
 
 Now consume this endpoints on React components that will be triggered on different Elements that the users will interact with..
 
-- [ ] Bring MUI elements!
+- [x] Bring MUI elements!
 
 - [ ] MenuRoutes (
 
@@ -103,10 +103,10 @@ Now consume this endpoints on React components that will be triggered on differe
 
 - [ ] StoreDashboard ()
 
-  - [ ] DisplayStoreItems()
+  - [x] DisplayStoreItems()
 
     - [ ] Image + title + description + price + buy + ammount(default=1)
-    - [ ] BuyHandler() --> /product/buy(itemId, ammount, clientId:token)
+    - [x] BuyHandler() --> /product/buy(itemId, ammount, clientId:token)
 
   - [ ] DisplayUserInvoices (token)
 

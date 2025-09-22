@@ -1,6 +1,7 @@
 "use client";
 import AgricultureSharpIcon from "@mui/icons-material/AgricultureSharp";
 import Link from "next/link";
+import NavMenu from "./nav-menu";
 
 export default function Header() {
   return (
@@ -11,9 +12,8 @@ export default function Header() {
           <h1 className="flex items-center text-white">Bob's Corn</h1>
         </Link>
       </div>
-      <div>
-        <p>burger menu</p>
-        {/* add menu burger */}
+      <div className="p-1 border-1 border-success bg-green-800 rounded-md hover:bg-green-700 hover:shadow-md">
+        <NavMenu />
       </div>
     </header>
   );

@@ -18,7 +18,7 @@ export default function MainStoreDashboard() {
       <div className="w-2/3 h-full border-2 border-gray-300 rounded-lg p-4">
         <DisplayStoreItems />
       </div>
-      <div className="w-1/3 h-full bg-gray-100 rounded-lg p-4 justify-center items-center flex">
+      <div className="w-1/3 h-full bg-gray-50 rounded-lg p-4 justify-center items-center flex border-2 border-gray-300">
         <DisplayUserInvoices token={tokenString} />
       </div>
     </div>

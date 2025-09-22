@@ -28,6 +28,7 @@ model Product {
   id          String   @id @default(uuid())
   name        String   @unique
   description String?
+  imageUrl    String?
   price     Int
   stock     Int @default(0)
   ammountLimit Int @default(0) @map("ammount_limit")
