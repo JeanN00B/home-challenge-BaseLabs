@@ -15,11 +15,14 @@ export default function MainStoreDashboard() {
 
   return (
     <div className="flex flex-row gap-4 items-center justify-center w-full h-full">
-      <div className="w-2/3 h-full border-2 border-gray-300 rounded-lg p-4">
+      <div className="w-2/3 h-full border-2 border-gray-300 rounded-lg p-4 bg-[#191c25]">
         <DisplayStoreItems />
       </div>
-      <div className="w-1/3 h-full bg-gray-50 rounded-lg p-4 justify-center items-center flex border-2 border-gray-300">
-        <DisplayUserInvoices token={tokenString} />
+      <div className="w-1/3 h-full rounded-lg p-4 justify-center items-center flex flex-col border-2 border-gray-300 bg-[#191c25] gap-4">
+        <h2 className="text-white text-2xl font-bold">Invoices</h2>
+        <div className="w-full h-full">
+          <DisplayUserInvoices token={tokenString} />
+        </div>
       </div>
     </div>
   );

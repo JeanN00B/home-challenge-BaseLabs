@@ -1,70 +1,36 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
   const handleRegister = async (formData: FormData) => {
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const password = String(formData.get("password") || "").trim();
-    const confirmPassword = String(
-      formData.get("confirmPassword") || ""
-    ).trim();
 
-    if (!name || !email || !password || !confirmPassword) {
-      setErrorMessage("Please fill in all fields.");
-      return;
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, name }),
+    });
+
+    if (!res.ok) {
+      const errorBody = await res.json().catch(() => ({}));
+      throw new Error(
+        errorBody?.message || "Registration failed. Please try again."
+      );
     }
 
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match.");
-      return;
-    }
-
-    try {
-      setIsSubmitting(true);
-      setErrorMessage(null);
-
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, name }),
-      });
-
-      if (!res.ok) {
-        const errorBody = await res.json().catch(() => ({}));
-        throw new Error(
-          errorBody?.message || "Registration failed. Please try again."
-        );
-      }
-
-      const data = await res.json();
-      localStorage.setItem("token", data.id);
-      localStorage.setItem("role", data.role);
-      router.push("/");
-    } catch (error: unknown) {
-      const message =
-        error instanceof Error ? error.message : "Unexpected error";
-      setErrorMessage(message);
-    } finally {
-      setIsSubmitting(false);
-    }
+    const data = await res.json();
+    localStorage.setItem("token", data.id);
+    localStorage.setItem("role", data.role);
+    router.push("/");
   };
 
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-xl font-semibold">Register</h2>
-
-      {errorMessage ? (
-        <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-          {errorMessage}
-        </div>
-      ) : null}
 
       <form
         onSubmit={async (e) => {
@@ -82,7 +48,7 @@ export default function RegisterPage() {
             id="name"
             type="text"
             name="name"
-            placeholder="Jane Doe"
+            placeholder="Jean Carlo"
             className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600"
             required
           />
@@ -96,7 +62,7 @@ export default function RegisterPage() {
             id="email"
             type="email"
             name="email"
-            placeholder="you@example.com"
+            placeholder="client@gmail.com"
             className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600"
             required
           />
@@ -120,30 +86,11 @@ export default function RegisterPage() {
           />
         </div>
 
-        <div className="flex flex-col gap-1">
-          <label
-            htmlFor="confirmPassword"
-            className="text-sm font-medium text-gray-700"
-          >
-            Confirm Password
-          </label>
-          <input
-            id="confirmPassword"
-            type="password"
-            name="confirmPassword"
-            placeholder="••••••••"
-            className="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600"
-            required
-            minLength={6}
-          />
-        </div>
-
         <button
           type="submit"
-          disabled={isSubmitting}
           className="mt-2 w-full rounded-md bg-green-600 px-4 py-2 font-medium text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {isSubmitting ? "Creating account..." : "Create account"}
+          Create account
         </button>
       </form>
     </div>

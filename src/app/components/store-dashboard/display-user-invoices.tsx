@@ -16,12 +16,8 @@ export default function DisplayUserInvoices({
     const run = async () => {
       const invoicesList = await fetch("/api/invoices/get", {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          clientId: token,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
       });
       const data = await invoicesList.json();
       setInvoices(data);
