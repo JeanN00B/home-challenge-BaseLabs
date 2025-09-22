@@ -44,7 +44,7 @@ export default function MediaCard(item: Product) {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        src={imageUrl || ""}
+        src={imageUrl || undefined}
         component="img"
         alt={name}
         title={name}
