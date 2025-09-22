@@ -1,5 +1,5 @@
 import prisma from "@/server/db";
-import { RateLimiter, RateLimiterProps } from "./rate-limiter";
+import { RateLimiter } from "./rate-limiter";
 // UPDATE PRODUCT FUNCTION
 
 // BUY PRODUCT FUNCTION
@@ -36,6 +36,10 @@ export interface DeleteProductRequest {
   id: string;
 }
 
+export interface GetProductRequest {
+  id: string;
+}
+
 // RegisterProduct FUNCTION
 export async function registerProduct(request: RegisterProductRequest) {
   const { name, description, price, stock, ammountLimit, timeRangeLimit } =
@@ -68,6 +72,9 @@ export async function buyProduct(request: BuyProductRequest) {
   const product = await prisma.product.findUnique({
     where: { id: productId },
   });
+  if (!clientId) {
+    throw new Error("Login to buy products!");
+  }
   if (!product) {
     throw new Error("Product not found");
   }
@@ -109,5 +116,16 @@ export async function getProducts() {
   return { response: products, status: 200 };
 }
 
+export async function getProductById(request: GetProductRequest) {
+  const { id } = request;
+  const product = await prisma.product.findUnique({
+    where: { id },
+  });
+  if (!product) {
+    throw new Error("Product not found");
+  }
+  return { response: product, status: 200 };
+}
+
 //TODO: add a decorator that applies a limit to the BUY endpoint (this is not working right now)
-export const BuyWithLimit = RateLimiter(buyProduct);
+export const buyWithLimit = RateLimiter(buyProduct);

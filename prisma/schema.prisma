@@ -37,6 +37,7 @@ model Product {
 
 model Invoice {
   id        String   @id @default(uuid())
+  date      DateTime @default(now()) @map("date")
   clientId  String   @map("client_id")
   products  Json      // [{productId: String, ammount: Int}]
 }
