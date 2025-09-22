@@ -28,6 +28,8 @@ export interface BuyProductRequest {
   productId: string;
   ammount: number;
   clientId: string;
+  productName: string;
+  productPrice: number;
 }
 
 export interface DeleteProductRequest {
@@ -62,7 +64,7 @@ export async function updateProduct(request: UpdateProductRequest) {
 // BuyProduct FUNCTION
 
 export async function buyProduct(request: BuyProductRequest) {
-  const { productId, ammount, clientId } = request;
+  const { productId, ammount, clientId, productName, productPrice } = request;
   const product = await prisma.product.findUnique({
     where: { id: productId },
   });
@@ -83,7 +85,7 @@ export async function buyProduct(request: BuyProductRequest) {
 
   const invoice = await prisma.invoice.create({
     data: {
-      products: { create: { productId, ammount } },
+      products: { productId, productName, productPrice, ammount },
       clientId,
     },
   });

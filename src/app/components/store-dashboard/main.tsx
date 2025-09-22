@@ -20,7 +20,7 @@ export default function MainStoreDashboard() {
       </div>
       <div className="w-1/3 h-full rounded-lg p-4 justify-center items-center flex flex-col border-2 border-gray-300 bg-[#191c25] gap-4">
         <h2 className="text-white text-2xl font-bold">Invoices</h2>
-        <div className="w-full h-full">
+        <div className="w-full h-full overflow-y-auto">
           <DisplayUserInvoices token={tokenString} />
         </div>
       </div>

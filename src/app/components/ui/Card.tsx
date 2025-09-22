@@ -20,7 +20,11 @@ export default function MediaCard(item: Product) {
     setTokenString(tokenString);
   }, []);
 
-  function buyItemHandler(productId: string) {
+  function buyItemHandler(
+    productId: string,
+    productName: string,
+    productPrice: number
+  ) {
     fetch("/api/products/buy", {
       method: "POST",
       headers: {
@@ -28,6 +32,8 @@ export default function MediaCard(item: Product) {
       },
       body: JSON.stringify({
         productId: productId,
+        productName: productName,
+        productPrice: productPrice,
         ammount: 1,
         clientId: tokenString,
       }),
@@ -56,7 +62,7 @@ export default function MediaCard(item: Product) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => buyItemHandler(id)}>
+        <Button size="small" onClick={() => buyItemHandler(id, name, price)}>
           Buy
         </Button>
       </CardActions>

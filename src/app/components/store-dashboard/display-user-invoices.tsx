@@ -1,7 +1,5 @@
 import { Invoice } from "@/generated/prisma";
-import { getInvoices } from "@/server/user/user-function";
 import { useEffect, useState } from "react";
-import BasicTable from "../ui/Table";
 
 interface DisplayUserInvoicesProps {
   token: string;
@@ -32,10 +30,33 @@ export default function DisplayUserInvoices({
       </div>
     );
   }
+
   return (
-    <>
-      {/* {invoices.map((invoice: Invoice) => {})} */}
-      <BasicTable />
-    </>
+    <ul>
+      {invoices.map((invoice: Invoice) => {
+        return (
+          <li
+            className="border-y-2 border-gray-300 p-2 text-white"
+            key={invoice.id}
+          >
+            <h3>
+              Invoice ID:
+              <span className="text-green-500 ml-2">{invoice.id}</span>
+            </h3>
+            <ul>
+              {invoice.products &&
+                Object.entries(invoice.products).map(
+                  ([k, v]) =>
+                    k != "productId" && (
+                      <li key={k}>
+                        <strong>{k}:</strong> {String(v)}
+                      </li>
+                    )
+                )}
+            </ul>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
