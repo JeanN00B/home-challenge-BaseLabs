@@ -21,7 +21,7 @@ export default function DisplayUserInvoices({
       setInvoices(data);
     };
     run();
-  }, []);
+  }, [token]);
 
   if (invoices.length === 0) {
     return (

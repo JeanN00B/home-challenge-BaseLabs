@@ -1,15 +1,14 @@
 import prisma from "@/server/db";
 
 interface GetInvoicesRequest {
-  clientId: string;
+  token: string;
 }
 
 export async function getInvoices(request: GetInvoicesRequest) {
-  const { clientId } = request;
+  const { token } = request;
   const invoices = await prisma.invoice.findMany({
-    where: { clientId: clientId },
+    where: { clientId: token },
   });
-  console.log("invoices", invoices);
-  console.log("clientId", clientId);
+
   return { response: invoices, status: 200 };
 }

@@ -46,6 +46,7 @@ export default function PositionedMenu() {
           Admin Dashboard
         </MenuItem>
         <MenuItem onClick={() => router.push("/auth")}>Authentication</MenuItem>
+        <MenuItem onClick={() => router.push("/")}>Store</MenuItem>
       </Menu>
     </div>
   );
