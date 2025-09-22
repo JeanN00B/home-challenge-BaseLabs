@@ -1,8 +1,14 @@
 # Bob's Corn
 
-## Thinking process:
+## Introduction:
+
+### Thinking process:
 
 Check the step by step documented [here](./THINKING-PROCESS.md)
+
+### To improve:
+
+Check some of the areas I think we can improve this [here](./TO-IMPROVE)!
 
 ## Clone this project:
 
