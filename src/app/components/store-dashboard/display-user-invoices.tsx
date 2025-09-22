@@ -1,6 +1,7 @@
 import { Invoice } from "@/generated/prisma";
 import { getInvoices } from "@/server/user/user-function";
 import { useEffect, useState } from "react";
+import BasicTable from "../ui/Table";
 
 interface DisplayUserInvoicesProps {
   token: string;
@@ -30,14 +31,15 @@ export default function DisplayUserInvoices({
 
   if (invoices.length === 0) {
     return (
-      <div>No invoices found, please authenticate or buy something first.</div>
+      <div className="text-center text-gray-400 text-lg p-5">
+        No invoices found, please authenticate or buy something first.
+      </div>
     );
   }
   return (
     <>
-      {invoices.map((invoice: Invoice) => {
-        return <div key={invoice.id}></div>;
-      })}
+      {/* {invoices.map((invoice: Invoice) => {})} */}
+      <BasicTable />
     </>
   );
 }

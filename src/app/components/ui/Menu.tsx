@@ -3,8 +3,10 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useRouter } from "next/navigation";
 
 export default function PositionedMenu() {
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -40,8 +42,10 @@ export default function PositionedMenu() {
           horizontal: "left",
         }}
       >
-        <MenuItem onClick={handleClose}>Admin Dashboard</MenuItem>
-        <MenuItem onClick={handleClose}>Authentication</MenuItem>
+        <MenuItem onClick={() => router.push("/admin")}>
+          Admin Dashboard
+        </MenuItem>
+        <MenuItem onClick={() => router.push("/auth")}>Authentication</MenuItem>
       </Menu>
     </div>
   );
