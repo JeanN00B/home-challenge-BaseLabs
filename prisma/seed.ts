@@ -5,33 +5,61 @@ async function main() {
   const existingAdmin = await prisma.user.findFirst({
     where: { role: "admin" },
   });
-
-  if (existingAdmin) {
-    console.log("Admin user already exists. No action taken.");
-    return;
-  }
-
-  const email = process.env.ADMIN_EMAIL;
-  const name = process.env.ADMIN_NAME;
-  const password = process.env.ADMIN_PASSWORD;
-
-  if (!email || !name || !password) {
-    console.error(
-      "Error, to setup the initial ADMIN, please provide the environment variables as described on example.env"
-    );
-    process.exit(1);
-  }
-
-  await prisma.user.create({
-    data: {
-      email,
-      name,
-      password,
-      role: "admin",
-    },
+  const existingUser = await prisma.user.findFirst({
+    where: { email: "user@user.com" },
   });
 
-  console.log("Initial admin user created.");
+  if (existingAdmin) {
+    console.warn("Admin user already exists. No action taken.");
+  } else {
+    await prisma.user.create({
+      data: {
+        email: "admin@admin.com",
+        name: "Admin",
+        password: "admin",
+        role: "admin",
+      },
+    });
+  }
+
+  if (existingUser) {
+    console.warn("User already exists. No action taken.");
+  } else {
+    await prisma.user.create({
+      data: {
+        email: "user@user.com",
+        name: "User",
+        password: "user",
+        role: "user",
+      },
+    });
+  }
+
+  console.log("Initial users created.");
+
+  const existingProduct = await prisma.product.findFirst({
+    where: { name: "corn" },
+  });
+
+  if (existingProduct) {
+    console.warn("Product already exists. No action taken.");
+  } else {
+    await prisma.product.create({
+      data: {
+        name: "corn",
+        description: "American sweet corn",
+        price: 1,
+        stock: 100,
+        imageUrl:
+          "https://images.unsplash.com/photo-1634467524884-897d0af5e104?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        ammountLimit: 1,
+        timeRangeLimit: 1,
+      },
+    });
+  }
+
+  console.log("Initial product created.");
+  return;
 }
 
 main()

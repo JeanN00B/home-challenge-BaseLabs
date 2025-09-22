@@ -1,4 +1,4 @@
-import { getInvoices } from "../user/user-function";
+import { getInvoices } from "../invoice/invoice-function";
 import { BuyProductRequest, getProductById } from "./products-functions";
 
 export function RateLimiter<T extends BuyProductRequest>(

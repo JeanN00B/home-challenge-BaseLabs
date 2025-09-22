@@ -1,4 +1,4 @@
-import { getInvoices } from "@/server/user/user-function";
+import { getInvoices } from "@/server/invoice/invoice-function";
 
 export async function POST(request: Request) {
   const body = await request.json();

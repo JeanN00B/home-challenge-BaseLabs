@@ -14,23 +14,32 @@ cd home-challenge-BaseLabs
 pnpm install
 ```
 
-2. Setup a .env based on example.env:
-
-```bash
-#  Admin user will be created with this values if no admin exists!
- ADMIN_EMAIL = admin@domain.com
- ADMIN_NAME = admin
- ADMIN_PASSWORD = secretPassword123
-```
-
-3. Create and setup DB schemas:
+2. Create and setup DB schemas:
 
 ```bash
 pnpm run db:generate
 pnpm run db:migrate
+pnpm run db:seed
 ```
 
-5. yarn run dev | build? --> executes admin check (if not user with status ADMIN, then register with ADMIN_EMAIL with status ADMIN...else, pass)
+Then the database will be populated with this information:
 
-6. Create user, login into admin, CRUD, etc implementation.
-7. TEST The original flow/idea
+```bash
+Users:
+- user: admin@admin.com
+- password: admin
+
+- user: user@user.com
+- password: user
+
+Products:
+- corn ( +100 stock, with 1 item per 1 minute)
+```
+
+3. execute local dev:
+
+```bash
+pnpm run dev
+```
+
+4. Test the project!

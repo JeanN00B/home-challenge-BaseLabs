@@ -63,18 +63,18 @@ From sessions, request, etc endpoints exposure to consume on front
 
 - [x] NextJS repo, Front + backend possibility (simple monorepo for the task)
 
-- [ ] DB schemas:
+- [x] DB schemas:
 
   - [x] Prisma ORM + sqlite
   - [x] Users (names, email, password, ID, role (client | admin)); => Register/Check Admin on (build | dev) process with script
   - [x] Products (name, stock, ID, Price, ammountLimit, timeRangeLimit);
   - [x] Invoices (ID, clientId, productsArray[productId, ammount])
-  - [ ] Seed script to init admin! + user!
+  - [x] Seed script to init admin! + user!
 
-- [ ] Backend that receives a POST to buy corn
+- [x] Backend that receives a POST to buy corn
 
   - [x] body: {userId, itemId, ammount}
-  - [ ] RateLimit: Decorator (using userId, and productId) --> If no invoice on the last min, pass, if invoice and no productId, pass... ELSE, error 429.
+  - [x] RateLimit: HOF (using userId, and productId) --> If no invoice on the last min, pass, if invoice and no productId, pass... ELSE, error 429.
 
 - [x] Auth-based: (With many mockuped functionalities)
   - [x] Login => We need a JWT or similar to auth the user & transactions! (Using client ID by now)
@@ -87,46 +87,46 @@ Now consume this endpoints on React components that will be triggered on differe
 
 - [x] Bring MUI elements!
 
-- [ ] MenuRoutes (
+- [x] MenuRoutes (
 
-  - [ ] /auth --> /auth/login, /auth/signup
-  - [ ] /auth/logout
-  - [ ] /products --> /products/register, /products/update
+  - [x] /auth --> /auth/login, /auth/signup
+  - [x] /auth/logout
+  - [x] /products --> /products/register, /products/update
         )
 
-- [ ] Home (
+- [x] Home (
 
-  - [ ] Header --> {storeIcon + storeName} + MenuRoutes
-  - [ ] Child --> {storeDashboard | authForm | adminDashboard}
-  - [ ] Footer --> copyright, made with love and coffe by @JeanCamacho
+  - [x] Header --> {storeIcon + storeName} + MenuRoutes
+  - [x] Child --> {storeDashboard | authForm | adminDashboard}
+  - [x] Footer --> copyright, made with love and coffe by @JeanCamacho
         )
 
-- [ ] StoreDashboard ()
+- [x] StoreDashboard ()
 
   - [x] DisplayStoreItems()
 
-    - [ ] Image + title + description + price + buy + ammount(default=1)
+    - [x] Image + title + description + price + buy + ammount(default=1)
     - [x] BuyHandler() --> /product/buy(itemId, ammount, clientId:token)
 
-  - [ ] DisplayUserInvoices (token)
+  - [x] DisplayUserInvoices (token)
 
-    - [ ] If not token --> "Login to see your invoices"
-    - [ ] Fetch from prisma by userId
-    - [ ] useEffect to trigger sync each time buy is successfully + useMemo / useCallback??
-    - [ ] Display table with --> id + products[productid, ammount]
+    - [x] If not token --> "Login to see your invoices"
+    - [x] Fetch from prisma by userId
+    - [x] useEffect to trigger sync each time buy is successfully + useMemo / useCallback??
+    - [x] Display table with --> id + products[productid, ammount]
 
-- [ ] AuthForm ()
+- [x] AuthForm ()
 
   - If already token --> "redirect to /home"
   - On lef button login, on right register
-    - [ ] LoginForm
-    - [ ] RegisterForm
+    - [x] LoginForm
+    - [x] RegisterForm
 
-- [ ] AdminDashboard()
+- [x] AdminDashboard()
   - if user.role not admin --> "redirect to /home"
-  - [ ] RegisterProduct --> form + /product/register{request} button
-  - [ ] ListAllProducts()
-    - [ ] ProductCard()
-    - [ ] EditProduct(id)
-      - [ ] Popup with updateForm
-      - [ ] Button to update--> /product/update{id, ...request}
+  - [x] RegisterProduct --> form + /product/register{request} button
+  - [x] ListAllProducts()
+    - [x] ProductCard()
+    - [x] EditProduct(id)
+      - [x] Popup with updateForm
+      - [x] Button to update--> /product/update{id, ...request}
