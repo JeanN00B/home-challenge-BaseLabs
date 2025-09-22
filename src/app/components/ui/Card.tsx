@@ -44,7 +44,9 @@ export default function MediaCard(item: Product) {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image={imageUrl || "/images/default-image.png"}
+        src={imageUrl || ""}
+        component="img"
+        alt={name}
         title={name}
       />
       <CardContent>
@@ -62,7 +64,12 @@ export default function MediaCard(item: Product) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => buyItemHandler(id, name, price)}>
+        <Button
+          size="large"
+          color="success"
+          variant="contained"
+          onClick={() => buyItemHandler(id, name, price)}
+        >
           Buy
         </Button>
       </CardActions>

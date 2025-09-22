@@ -13,7 +13,8 @@ export default function MainStoreDashboard() {
 
   return (
     <div className="flex flex-row gap-4 items-center justify-center w-full h-full">
-      <div className="w-2/3 h-full border-2 border-gray-300 rounded-lg p-4 bg-[#191c25]">
+      <div className="w-2/3 h-full border-2 border-gray-300 rounded-lg p-4 bg-[#191c25] flex flex-col gap-4">
+        <h2 className="text-white text-2xl font-bold">Available Products!</h2>
         <DisplayStoreItems />
       </div>
       <div className="w-1/3 h-full rounded-lg p-4 justify-center items-center flex flex-col border-2 border-gray-300 bg-[#191c25] gap-4">
